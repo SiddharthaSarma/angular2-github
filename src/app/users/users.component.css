@@ -4,3 +4,8 @@ li.list-group-item span {
 .card {
   margin-top: 10px;
 }
+@media screen and (min-width: 720px ) {
+  .image-container .card-block {
+    padding-top: 58px;
+  }
+}

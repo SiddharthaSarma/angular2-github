@@ -10,14 +10,14 @@
       <div class="col-md-9">
         <div class="card-block">
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-12">
               <h4 class="card-title">{{user.name || user.login}}</h4>
             </div>
-            <div class="col-md-6 text-right">
+            <div class="col-md-12 text-right mb-2">
               <span class="badge badge-pill badge-default">{{user.public_repos | number : fractionSize}} Public Repos</span>
-              <span class="badge badge-pill badge-default">{{user.public_gists | number : fractionSize}} Public Gists</span>
-              <span class="badge badge-pill badge-default">{{user.followers | number : fractionSize}} Followers</span>
-              <span class="badge badge-pill badge-default">{{user.following | number : fractionSize}} Following</span>
+              <span class="badge badge-pill badge-primary">{{user.public_gists | number : fractionSize}} Public Gists</span>
+              <span class="badge badge-pill badge-warning">{{user.followers | number : fractionSize}} Followers</span>
+              <span class="badge badge-pill badge-success">{{user.following | number : fractionSize}} Following</span>
             </div>
           </div>
           <ul class="list-group">
@@ -37,7 +37,7 @@
     </div>
   </div>
 
-  <div class="text-center">
+  <div class="text-center mt-4 mb-4">
     <h4>Repositories</h4>
   </div>
   <div class="card" *ngFor="let repo of repos">
@@ -47,8 +47,8 @@
           <div class="row">
             <h4 class="card-title col-sm-9"><a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a></h4>
             <div class="col-sm-3 text-right">
-              <span class="badge badge-pill badge-primary"><i class="fa fa-code-fork"></i> {{repo.forks | number : fractionSize}} Forks</span>
-              <span class="badge badge-pill badge-success"><i class="fa fa-eye"></i> {{repo.watchers | number : fractionSize}} Watchers</span>
+              <span class="badge badge-pill badge-primary"><i class="fa fa-code-fork"></i> {{repo.forks | number : fractionSize}}</span>
+              <span class="badge badge-pill badge-success"><i class="fa fa-eye"></i> {{repo.watchers | number : fractionSize}}</span>
             </div>
           </div>
           <p class="card-text">{{repo.description}}</p>
