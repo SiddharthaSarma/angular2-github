@@ -1,0 +1,14 @@
+<div class="card" *ngFor = "let technology of technologies">
+    <div class="row">
+      <div class="col-md-3 image-container text-center">
+        <img class="image" [src]="technology.imageUrl" alt="Card image cap">
+      </div>
+      <div class="col-md-9">
+        <div class="card-block">
+          <h4 class="card-title">{{technology.title}}</h4>
+          <p class="card-text">{{technology.description}}</p>
+          <a (click)="getDetails(technology.searchTerm)" class="btn btn-primary">View repos</a>
+        </div>
+      </div>
+    </div>
+  </div>
