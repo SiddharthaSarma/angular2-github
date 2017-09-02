@@ -1,0 +1,55 @@
+<div *ngIf="user">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{user.name || user.login}}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-4">
+          <img class="img-thumbnail github-avatar" src="{{user.avatar_url}}">
+        </div>
+        <div class="col-md-8">
+          <div class="stats">
+            <span class="label label-default">{{user.public_repos | number : fractionSize}} Public Repos</span>
+            <span class="label label-primary">{{user.public_gists | number : fractionSize}} Public Gists</span>
+            <span class="label label-success">{{user.followers | number : fractionSize}} Followers</span>
+            <span class="label label-info">{{user.following | number : fractionSize}} Following</span>
+          </div>
+          <br>
+          <ul class="list-group">
+            <li class="list-group-item"><strong>Username: </strong>{{user.login}}</li>
+            <li class="list-group-item"><strong>Location: </strong>{{user.location}}</li>
+            <li class="list-group-item"><strong>Email: </strong>{{user.email}}</li>
+            <li class="list-group-item"><strong>Blog: </strong><a [href]="user.blog" target="_blank">{{user.blog}}</a></li>
+            <li class="list-group-item"><strong>Member Since: </strong>{{user.created_at | date}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default" *ngIf="repos && repos.length > 0">
+    <div class="panel-heading">
+      <h3 class="panel-title">Repos</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div *ngFor="let repo of repos">
+            <div class="row">
+              <div class="col-md-9">
+                <h4><a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a></h4>
+                <p>{{repo.description}}</p>
+              </div>
+              <div class="col-md-3 text-right">
+                <span class="label label-default lbl-watchers">{{repo.watchers | number : fractionSize}} Watchers</span>
+                <span class="label label-primary lbl-forks">{{repo.forks | number : fractionSize}} Forks</span>
+              </div>
+            </div>
+            <hr/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
