@@ -46,8 +46,8 @@
       <div class="col-sm-12">
         <div class="card-block">
           <div class="row">
-            <h4 class="card-title"><a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a></h4>
-            <div class="col-sm-12 text-right">
+            <h4 class="card-title col-sm  -12 col-lg-8"><a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a></h4>
+            <div class="col-sm-12 col-lg-4 mb-sm-3 text-right">
               <span class="badge badge-pill badge-warning" *ngIf="repo.language">{{repo.language}}</span>
               <span class="badge badge-pill badge-danger"><i class="fa fa-bug"></i> {{repo.open_issues_count | number : fractionSize}}</span>
               <span class="badge badge-pill badge-primary"><i class="fa fa-code-fork"></i> {{repo.forks | number : fractionSize}}</span>
