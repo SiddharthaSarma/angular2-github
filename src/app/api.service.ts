@@ -10,13 +10,24 @@ export class ApiService {
   userDetailsUrl = 'https://api.github.com/users/';
   constructor(private http: Http) {}
 
-  fetchReposBasedOnTechnology(technology: string) {
+  fetchReposBasedOnTechnology(
+    technology: string,
+    page: number,
+    pageLength: number,
+    sort: string,
+    order: string
+  ) {
     return this.http
       .get(
         `${this.apiUrl +
-          technology}&language=${technology}&sort=stars&page=1&per_page=9`
+          technology}&language=${technology}&sort=${sort}&page=${page}&per_page=${pageLength}&order=${order}`
       )
-      .map(response => response.json());
+      .map(response => {
+        return {
+          response: response.json(),
+          headers: response.headers
+        };
+      });
   }
 
   fetchUserDetails(user: string) {
