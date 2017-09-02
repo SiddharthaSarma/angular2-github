@@ -1,11 +1,11 @@
-import { ActivatedRoute } from "@angular/router";
-import { ApiService } from "./../api.service";
-import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from './../api.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: "app-users",
-  templateUrl: "./users.component.html",
-  styleUrls: ["./users.component.css"]
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
   public user;
@@ -16,7 +16,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this._sub = this.route.params.subscribe(params => {
-      this.name = params["name"]; // (+) converts string 'id' to a number
+      this.name = params['name']; // (+) converts string 'id' to a number
       this.getDetails(this.name);
       this.getUserRepos(this.name);
       // In a real app: dispatch action to load the details here.
