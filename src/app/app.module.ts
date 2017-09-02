@@ -12,18 +12,23 @@ import { ReposComponent } from './repos/repos.component';
 import { UsersComponent } from './users/users.component';
 import { routing } from './app.routes';
 
+import {NgxPaginationModule} from 'ngx-pagination';
+import { LoaderComponent } from './loader/loader.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     TechnologyComponent,
     ReposComponent,
-    UsersComponent
+    UsersComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    NgxPaginationModule,
     routing
   ],
   providers: [TechnologyService, ApiService],
