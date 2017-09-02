@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+<div class="card" *ngFor="let repo of repos.items">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card-block">
+        <div class="row">
+          <h4 class="card-title col-sm-9"><a (click)="getOwnerDetails(repo.owner.login)">{{repo.full_name}}</a></h4>
+          <div class="col-sm-3 text-right">
+            <span class="badge badge-pill badge-danger"><i class="fa fa-bug"></i> {{repo.open_issues_count}}</span>
+            <span class="badge badge-pill badge-primary"><i class="fa fa-code-fork"></i> {{repo.forks}}</span>
+            <span class="badge badge-pill badge-success"><i class="fa fa-star"></i> {{repo.watchers}}</span>
+          </div>
+        </div>
+        <p class="card-text">{{repo.description}}</p>
+      </div>
+    </div>
+  </div>
+</div>
