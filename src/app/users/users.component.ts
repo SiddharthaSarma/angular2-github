@@ -1,3 +1,4 @@
+import { NavbarComponent } from './../navbar/navbar.component';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from './../api.service';
 import { Component, OnInit } from '@angular/core';
@@ -5,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.css'],
+  entryComponents: [NavbarComponent]
 })
 export class UsersComponent implements OnInit {
   public user;
