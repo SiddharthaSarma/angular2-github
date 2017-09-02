@@ -1,3 +1,24 @@
-.card {
+.card, .custom-pagination, .form-container {
   margin-top: 10px;
+}
+.custom-pagination {
+  padding: 10px 0px;
+}
+.hidden {
+  display: none;
+}
+
+@media screen  and (min-width: 800px) {
+  .form-inline .txt-search {
+    width: 67%;
+  }
+}
+@media screen  and (min-width: 1100px) {
+  .form-inline .txt-search {
+    width: 72%;
+  }
+}
+
+.form-inline .btn {
+  cursor: pointer;
 }

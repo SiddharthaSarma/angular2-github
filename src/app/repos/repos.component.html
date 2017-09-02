@@ -1,18 +1,45 @@
 <app-navbar></app-navbar>
-<div class="card" *ngFor="let repo of repos.items">
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="card-block">
-        <div class="row">
-          <h4 class="card-title col-sm-9"><a (click)="getOwnerDetails(repo.owner.login)">{{repo.full_name}}</a></h4>
-          <div class="col-sm-3 text-right">
-            <span class="badge badge-pill badge-danger"><i class="fa fa-bug"></i> {{repo.open_issues_count}}</span>
-            <span class="badge badge-pill badge-primary"><i class="fa fa-code-fork"></i> {{repo.forks}}</span>
-            <span class="badge badge-pill badge-success"><i class="fa fa-star"></i> {{repo.watchers}}</span>
+<div class="row mb-4 mt-4">
+  <div class="col-md-12 text-center form-container">
+    <form class="form-inline">
+      <input type="text" class="form-control txt-search mb-2 mr-sm-4 mb-sm-0" id="txtSearch" placeholder="Search..." #searchInput>
+
+      <label class="mr-sm-2" for="inlineFormCustomSelect">Sort</label>
+      <select name="ddlSort" class="custom-select mb-2 mr-sm-4" [(ngModel)]="sortValue" #order="ngModel">
+        <option value="1">Best match</option>
+        <option value="2">Most stars</option>
+        <option value="3">Fewest stars</option>
+        <option value="4">Most forks</option>
+        <option value="5">Fewest forks</option>
+      </select>
+
+      <button type="submit" (click)="search(searchInput.value)" class="btn btn-primary ml-2 mb-2">Search</button>
+    </form>
+  </div>
+</div>
+<app-loader *ngIf="loading"></app-loader>
+<div *ngIf="repos.items && !loading">
+  <div class="card" *ngFor="let repo of repos.items">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card-block">
+          <div class="row">
+            <h4 class="card-title col-sm-12 col-lg-9"><a href="" (click)="getOwnerDetails(repo.owner.login, $event)">{{repo.full_name}}</a></h4>
+            <div class="col-sm-12 col-lg-3 mt-sm-2 mb-sm-2 mb-lg-0 mt-lg-0 text-right">
+              <span class="badge badge-pill badge-danger"><i class="fa fa-bug"></i> {{repo.open_issues_count | number : fractionSize}}</span>
+              <span class="badge badge-pill badge-primary"><i class="fa fa-code-fork"></i> {{repo.forks | number : fractionSize}}</span>
+              <span class="badge badge-pill badge-success"><i class="fa fa-star"></i> {{repo.watchers | number : fractionSize}}</span>
+            </div>
           </div>
+          <p class="card-text">{{repo.description}}</p>
         </div>
-        <p class="card-text">{{repo.description}}</p>
       </div>
     </div>
+  </div>
+  <div class="text-center custom-pagination">
+    <ul class="hidden">
+      <li *ngFor="let item of pagesArray | paginate: { itemsPerPage: 9, currentPage: pageNumber, totalItems: maxPageLength }">{{item}}</li>
+    </ul>
+    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
   </div>
 </div>
