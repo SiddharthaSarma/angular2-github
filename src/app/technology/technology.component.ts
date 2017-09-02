@@ -20,7 +20,8 @@ export class TechnologyComponent implements OnInit {
     this.technologies = this.technologyService.getTechnologies();
   }
 
-  getDetails(repo: string) {
+  // Navigating to repos.
+  navigateToReposSection(repo: string) {
     this.router.navigate(['/repos', repo]);
   }
 }
