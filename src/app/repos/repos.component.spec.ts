@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReposComponent } from './repos.component';
-import { NavbarComponent } from '../navbar/navbar.component';
 
 describe('ReposComponent', () => {
   let component: ReposComponent;

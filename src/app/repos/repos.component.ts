@@ -1,13 +1,12 @@
-import { ActivatedRoute, Router } from "@angular/router";
-import { ApiService } from "./../api.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { ApiService } from './../api.service';
 
-import { NavbarComponent } from "../navbar/navbar.component";
 @Component({
-  moduleId: module.id,
-  selector: "app-repos",
-  templateUrl: "./repos.component.html",
-  styleUrls: ["./repos.component.css"],
+  selector: 'app-repos',
+  templateUrl: './repos.component.html',
+  styleUrls: ['./repos.component.css'],
   entryComponents: [NavbarComponent]
 })
 export class ReposComponent implements OnInit {
@@ -24,7 +23,7 @@ export class ReposComponent implements OnInit {
 
   ngOnInit() {
     this._sub = this.route.params.subscribe(params => {
-      this.name = params["name"];
+      this.name = params['name'];
       this.fetchRepos(this.name);
     });
   }
@@ -35,8 +34,7 @@ export class ReposComponent implements OnInit {
       .subscribe(response => (this.repos = response));
   }
 
-  getOwnerDetails(value) {
-    console.log(value);
-    this._router.navigate(["/users", value]);
+  getOwnerDetails(value: string) {
+    this._router.navigate(['/users', value]);
   }
 }
