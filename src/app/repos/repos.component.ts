@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { ApiService } from './../api.service';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-repos',
@@ -13,6 +14,11 @@ import { ApiService } from './../api.service';
 export class ReposComponent implements OnInit {
   public repos: any = {
     items: false
+  };
+  public options = {
+    position: ['bottom', 'right'],
+    timeOut: 5000,
+    showProgressBar: false
   };
   public loading = false;
   public pageLength = 9;
@@ -50,7 +56,8 @@ export class ReposComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private route: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
+    private _notificationsService: NotificationsService
   ) {}
 
   ngOnInit() {
@@ -71,16 +78,28 @@ export class ReposComponent implements OnInit {
         this.filterParam,
         this.filterOrder
       )
-      .subscribe(data => {
-        this.repos = data.response;
-        this.loading = false;
-        if (this.pageNumber === 1) {
-          this.calculatePageNumber(data.headers.get('link'));
+      .subscribe(
+        data => {
+          this.repos = data.response;
+          this.loading = false;
+          if (this.pageNumber === 1) {
+            this.calculatePageNumber(data.headers.get('link'));
+          }
+        },
+        error => {
+          this.loading = false;
+          this.repos = {
+            items: false
+          };
+          this._notificationsService.error(
+            'Some thing went wrong!',
+            'Please try again later.'
+          );
         }
-      });
+      );
   }
 
-  // Need to calculate the pageNumber.
+  // Calculate the pageNumber.
   calculatePageNumber(url: string) {
     const urls: Array<string> = url.split(';');
     for (let i = 0; i < urls.length; i++) {
@@ -92,7 +111,7 @@ export class ReposComponent implements OnInit {
     this.adjustPageNumbers();
   }
 
-  // will push the page numbers into array.
+  // Push the page numbers into array.
   adjustPageNumbers() {
     const pages = [];
     for (let i = 1; i <= this.maxPageNumber; i++) {
@@ -116,6 +135,7 @@ export class ReposComponent implements OnInit {
         return params;
       }, {});
   }
+
   // Get owner details.
   getOwnerDetails(value: string, event) {
     if (event) {
@@ -132,12 +152,14 @@ export class ReposComponent implements OnInit {
     window.scrollTo(0, 0);
   }
 
-  search(search) {
-    this.filterParam = this.filterObject[this.sortValue].filterParam;
-    this.filterOrder = this.filterObject[this.sortValue].filterOrder;
+  // Handle the filter and search actions.
+  search(searchInput) {
+    const selectedItem = this.filterObject[this.sortValue];
+    this.filterParam = selectedItem.filterParam;
+    this.filterOrder = selectedItem.filterOrder;
     this.pageNumber = 1;
-    if (search) {
-      this.name = search;
+    if (searchInput) {
+      this.name = searchInput;
     }
     this.fetchRepos();
   }

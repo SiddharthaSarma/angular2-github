@@ -21,7 +21,6 @@ export class TechnologyComponent implements OnInit {
   }
 
   getDetails(repo: string) {
-    console.log(repo);
     this.router.navigate(['/repos', repo]);
   }
 }

@@ -1,5 +1,6 @@
 <app-navbar></app-navbar>
-<div *ngIf="user">
+<app-loader *ngIf="userDataLoading"></app-loader>
+<div *ngIf="user && !userDataLoading">
   <div class="card">
     <div class="row">
       <div class="col-md-3 image-container text-center">
@@ -57,3 +58,7 @@
     </div>
   </div>
 </div>
+<div *ngIf="!user && !userDataLoading" class="text-center mt-4">
+  <h4> No user found with the given name </h4>
+</div>
+<simple-notifications [options]="options"></simple-notifications>
