@@ -3,6 +3,9 @@
 <div *ngIf="user && !loading">
   <div class="card">
     <div class="row">
+      <div class="col-sm-12 text-center">
+        <h4 class="card-title mt-3" *ngIf="user.name || user.login">{{user.name || user.login}}</h4>
+      </div>
       <div class="col-md-3 image-container text-center">
         <div class="card-block">
           <img class="image" class="img-thumbnail github-avatar" [src]="user.avatar_url">
@@ -11,9 +14,6 @@
       <div class="col-md-9">
         <div class="card-block">
           <div class="row">
-            <div class="col-sm-12">
-              <h4 class="card-title">{{user.name || user.login}}</h4>
-            </div>
             <div class="col-md-12 text-right mb-2">
               <span class="badge badge-pill badge-default">{{user.public_repos | number : fractionSize}} Public Repos</span>
               <span class="badge badge-pill badge-primary">{{user.public_gists | number : fractionSize}} Public Gists</span>
@@ -46,10 +46,12 @@
       <div class="col-sm-12">
         <div class="card-block">
           <div class="row">
-            <h4 class="card-title col-sm-9"><a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a></h4>
-            <div class="col-sm-3 text-right">
+            <h4 class="card-title"><a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a></h4>
+            <div class="col-sm-12 text-right">
+              <span class="badge badge-pill badge-warning" *ngIf="repo.language">{{repo.language}}</span>
+              <span class="badge badge-pill badge-danger"><i class="fa fa-bug"></i> {{repo.open_issues_count | number : fractionSize}}</span>
               <span class="badge badge-pill badge-primary"><i class="fa fa-code-fork"></i> {{repo.forks | number : fractionSize}}</span>
-              <span class="badge badge-pill badge-success"><i class="fa fa-eye"></i> {{repo.watchers | number : fractionSize}}</span>
+              <span class="badge badge-pill badge-success"><i class="fa fa-star"></i> {{repo.watchers | number : fractionSize}}</span>
             </div>
           </div>
           <p class="card-text">{{repo.description}}</p>
