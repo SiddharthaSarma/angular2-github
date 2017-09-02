@@ -16,10 +16,9 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this._sub = this.route.params.subscribe(params => {
-      this.name = params['name']; // (+) converts string 'id' to a number
+      this.name = params['name'];
       this.getDetails(this.name);
       this.getUserRepos(this.name);
-      // In a real app: dispatch action to load the details here.
     });
   }
 
