@@ -11,8 +11,4 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {}
 
-  navigateToTechnologies($event) {
-    $event.preventDefault();
-    this.router.navigate(['/technologies']);
-  }
 }
