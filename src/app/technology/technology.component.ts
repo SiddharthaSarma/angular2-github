@@ -1,4 +1,3 @@
-import { NavbarComponent } from './../navbar/navbar.component';
 import { TechnologyService } from './../technology.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -6,8 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-technology',
   templateUrl: './technology.component.html',
-  styleUrls: ['./technology.component.css'],
-  entryComponents: [NavbarComponent]
+  styleUrls: ['./technology.component.css']
 })
 export class TechnologyComponent implements OnInit {
   technologies = [];
