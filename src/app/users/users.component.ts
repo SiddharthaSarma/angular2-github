@@ -1,6 +1,4 @@
-import { LoaderComponent } from './../loader/loader.component';
 import { Component, OnInit } from '@angular/core';
-import { NavbarComponent } from './../navbar/navbar.component';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from './../api.service';
 import { NotificationsService } from 'angular2-notifications';
@@ -8,8 +6,7 @@ import { NotificationsService } from 'angular2-notifications';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css'],
-  entryComponents: [NavbarComponent, LoaderComponent]
+  styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
   public user;
