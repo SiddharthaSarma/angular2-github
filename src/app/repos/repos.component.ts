@@ -1,7 +1,5 @@
-import { LoaderComponent } from './../loader/loader.component';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavbarComponent } from '../navbar/navbar.component';
 import { ApiService } from './../api.service';
 import { NotificationsService } from 'angular2-notifications';
 
@@ -9,7 +7,6 @@ import { NotificationsService } from 'angular2-notifications';
   selector: 'app-repos',
   templateUrl: './repos.component.html',
   styleUrls: ['./repos.component.css'],
-  entryComponents: [NavbarComponent, LoaderComponent]
 })
 export class ReposComponent implements OnInit {
   public repos: any = {
